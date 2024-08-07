@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.sj232.dao.DaoFactory;
-import com.sj232.dao.UserDao;
-import com.sj232.domain.User;
+import com.sj232test.domain.User;
+
+
 
 
 
@@ -20,7 +20,7 @@ public class UserDaoTest {
 	public void addAndGet() throws SQLException, ClassNotFoundException {				
 		ApplicationContext context =
 				new AnnotationConfigApplicationContext(DaoFactory.class);
-		UserDao dao = context.getBean("userDao", com.sj232.dao.UserDao.class);
+		UserDao2 dao = context.getBean("testdao", UserDao2.class);
 		
 		dao.deleteAll();	
 		//Asserts that two longs are equal. If they are not, an AssertionError is thrown. 

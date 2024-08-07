@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 import com.sj232test.domain.User;
 
-public class UserDao
+public class UserDao2
 
 
 {
