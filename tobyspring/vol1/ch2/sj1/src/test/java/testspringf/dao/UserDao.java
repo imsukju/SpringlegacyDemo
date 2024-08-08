@@ -96,6 +96,6 @@ public class UserDao {
 		}
 		ps.setString(1, "users");
 		ps.setString(2, "이수");
-		ps.setString(3, "id = bu%");
+		ps.setString(3, "id = bu_");
 	}
 }
