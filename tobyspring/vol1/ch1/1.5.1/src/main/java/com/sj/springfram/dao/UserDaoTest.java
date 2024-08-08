@@ -19,7 +19,7 @@ public class UserDaoTest {
 			user.setId("gath");
 			user.setName("백기선");
 			user.setPassword("married");
-
+			
 			dao.add(user);
 				
 			System.out.println(user.getId() + " 등록 성공");

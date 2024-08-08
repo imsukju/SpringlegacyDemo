@@ -1,25 +1,25 @@
-package testspringf.dao;
+package com.sj2.dao;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.context.ApplicationContext;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.HashSet;
 
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
+import  org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 
-import testspringf.domain.User;
+import com.sj2.domain.User;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UserDaoTestSet {
+public class UserDaoTest2 {
 	static User user3 = new User();
+	
+
 	
 	static void setuser3(String id, String name, String password)
 	{
@@ -32,7 +32,7 @@ public class UserDaoTestSet {
 	public void andAndGet() throws SQLException {
 
 		ApplicationContext context =
-				new AnnotationConfigApplicationContext(DaoFactory.class);
+				new AnnotationConfigApplicationContext(DaoImple.class);
 		UserDao dao = context.getBean("userDao", UserDao.class);
 
 		User user1 = new User("yhtah", "박성철", "springno1");
@@ -56,13 +56,11 @@ public class UserDaoTestSet {
 		
 		
 	}
-	Serializable  a;
-	@Test
-	@Order(1)
+//	@Test
+//	@Order(1)
 	public void count() throws SQLException {
-
 		ApplicationContext context =
-				new AnnotationConfigApplicationContext(DaoFactory.class);
+				new AnnotationConfigApplicationContext(DaoImple.class); //여기서 빈 dataSource 호출됨
 		UserDao dao = context.getBean("userDao", UserDao.class);
 		
 		dao.deleteAll();
@@ -85,12 +83,12 @@ public class UserDaoTestSet {
 
 	}
 	
-	@Test
-	@Order(2)
+//	@Test
+//	@Order(2)
 	public void mysqlquery() throws SQLException
 	{
 		ApplicationContext context =
-				new AnnotationConfigApplicationContext(DaoFactory.class);
+				new AnnotationConfigApplicationContext(DaoImple.class);
 		UserDao dao = context.getBean("userDao", UserDao.class);
 	
 		String c = dao.updateis("users","id");
@@ -100,5 +98,24 @@ public class UserDaoTestSet {
 		
 	}
 	
-
+	@Test
+	@Order(3)
+	public void mysqlquery2() throws SQLException
+	{
+		ApplicationContext context =
+				new AnnotationConfigApplicationContext(DaoImple.class);
+		UserDao dao = context.getBean("userDao", UserDao.class);
+	
+		dao.deleteAll();
+		User user1 = new User("gyumee", "박성철", "springno1");
+		User user2 = new User("leegw700", "이길원", "springno2");
+		User user3 = new User("bumjin", "박범진", "springno3");
+		dao.add(user1);
+		dao.add(user2);
+		dao.add(user3);
+		
+		dao.deletecolumn("users","id");
+		assertEquals(dao.getCount(),2);
+		
+	}	
 }

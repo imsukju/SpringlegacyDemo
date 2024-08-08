@@ -1,4 +1,4 @@
-package testspringf.dao;
+package com.sj2.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,19 +10,39 @@ import javax.sql.DataSource;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import testspringf.domain.User;
+import com.sj2.domain.User;
 
 public class UserDao {
 	private DataSource dataSource;
-	private String table_name;
-	private String cloumname;
+	private String table_name = "users";
+	private String cloumname = "id";
 	private Scanner scanner = new Scanner(System.in);
-	private String choice;
-
+	private int countcreat = 0;
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
+//	public int creattable() throws SQLException
+//	{
+//		Connection c = this.dataSource.getConnection();
+//		if(countcreat == 0)
+//		{
+//			PreparedStatement ps = c.prepareStatement(
+//					"create table users(id varchar(10) prmarykey,name varchar(20) not null,"
+//					+ "	password varchar(10) not null)");
+//			countcreat += 1;
+//			ps.executeUpdate();
+//
+//			ps.close();
+//			c.close();
+//		}
+//		else
+//		{
+//			return countcreat;
+//		}
+//
+//		return countcreat;
+//	}
 	public void add(User user) throws SQLException {
 		Connection c = this.dataSource.getConnection();
 
@@ -97,6 +117,7 @@ public class UserDao {
 		PreparedStatement ps = c.prepareStatement("update " + this.table_name+ " set name = ? where "+ this.cloumname+" like ?");
 		
 		System.out.println("바꿀 이름을 선택");
+		String choice;
 		choice = scanner.nextLine();
 		ps.setString(1, choice);
 		ps.setString(2, "bu%");
@@ -108,9 +129,18 @@ public class UserDao {
 		return choice;
 	}
 	
-	public void deletecolumn() throws SQLException
+	public void deletecolumn(String table, String column) throws SQLException
 	{
 		Connection c = dataSource.getConnection();
-		PreparedStatement ps = c.prepareStatement("update " + this.table_name+ " set name = ? where id like bu_");
+		String query = "DELETE FROM " + table + " WHERE " + column + " LIKE ?";
+		//"delete from "+table+"where "+column+" like ?;";
+		PreparedStatement ps = c.prepareStatement(query);
+		ps.setString(1,"bu%");
+		
+		ps.executeUpdate();
+
+		ps.close();
+		c.close();
+		System.out.println("완료");
 	}
 }

@@ -1,5 +1,7 @@
 package testspringf.dao;
 
+import java.util.Scanner;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -20,11 +22,35 @@ public class DaoFactory {
 
 		return dataSource;
 	}
+	
+	@Bean
+	public DataSource HdataSource()
+	{
+		SimpleDriverDataSource dataSource = new SimpleDriverDataSource ();
+		dataSource.setDriverClass(org.h2.Driver.class);
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+		dataSource.setUsername("sa");
+		dataSource.setPassword("1234");		
+		
+		return dataSource;
+	}
 
 	@Bean
 	public UserDao userDao() {
+		Scanner sc = new Scanner(System.in);
+		
 		UserDao userDao = new UserDao();
-		userDao.setDataSource(dataSource());
+		
+		System.out.println("myssql or h2 선택");
+		String choice = sc.nextLine();
+		if (choice.equals("mysql"))
+		{
+			userDao.setDataSource(dataSource());
+		}
+		else if (choice.equals("h2"))
+		{
+			userDao.setDataSource(HdataSource());
+		}
 		return userDao;
 	}
 }
