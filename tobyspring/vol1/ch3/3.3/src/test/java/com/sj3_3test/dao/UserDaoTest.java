@@ -5,6 +5,7 @@ package com.sj3_3test.dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -83,4 +84,28 @@ public class UserDaoTest {
 //		dao.add(user3);
 //		assertThat(dao.getCount(), is(3));
 //	}
+	
+	@Test
+	public void addAndGet() throws SQLException, ClassNotFoundException {				
+		dao.deleteAll();
+		assertEquals(dao.getCount(), 0);
+		
+		dao.add(user1);
+		dao.add(user2);
+		assertEquals(dao.getCount(), 2);
+		
+		Optional<User> Optuserget1 = Optional.ofNullable(dao.get(user1.getId()));
+		if (!Optuserget1.isEmpty()) {
+			User userget = Optuserget1.get();
+			assertEquals(user1.getName(), userget.getName());
+			assertEquals(user1.getPassword(), userget.getPassword());
+		}		
+		
+		Optional<User> Optuserget2 = Optional.ofNullable(dao.get(user2.getId()));	
+		if (!Optuserget2.isEmpty()) {
+			User userget = Optuserget2.get();
+			assertEquals(user2.getName(), userget.getName());
+			assertEquals(user2.getPassword(), userget.getPassword());		
+		}		
+	}
 }
