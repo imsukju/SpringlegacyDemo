@@ -1,5 +1,4 @@
-package com.sj4test.dao;
-
+package com.sj515test.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -11,37 +10,35 @@ import javax.sql.DataSource;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
 import org.springframework.jdbc.support.SQLExceptionTranslator;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
-
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.mysql.cj.exceptions.MysqlErrorNumbers;
-import com.sj4.dao.DaoFactory;
-import com.sj4.dao.UserDao;
-import com.sj4.dao.UserDaoSql;
-import com.sj4.domain.User;
+import com.sj515.dao.DaoFactory;
+import com.sj515.dao.UserDao;
+import com.sj515.dao.UserDaoJdbc;
+import com.sj515.dao.UserDaoSql;
+import com.sj515.domain.Level;
+import com.sj515.domain.User;
+
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {DaoFactory.class})
-public class UserDaoTest {
-	
-	//@Autowired
-	//private ApplicationContext context;	
-	 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class UserDaoTest { 
 	@Autowired
 	private UserDao dao;
-	
-	@Autowired
-	private UserDaoSql userDaoSql;
-	
 	@Autowired
 	private DataSource dataSource;
 	
@@ -53,12 +50,13 @@ public class UserDaoTest {
 	@BeforeEach
 	public void setUp() {	
 		// AlpabetNumeric, NumericAlpabet
-		user1 = new User("user1", "sungkim", "0000");
-		user2 = new User("user2", "brucelee", "1111");
-		user3 = new User("user3", "haechoi", "2222");
+		user1 = new User("user1", "sungkim", "0000",Level.valueOf(1),25,3);
+		user2 = new User("user2", "brucelee", "1111",Level.valueOf(2),5,3);
+		user3 = new User("user3", "haechoi", "2222",Level.valueOf(2),35,33);
 	}
 	
 	@Test
+	@Order(1)
 	public void addAndGet() throws SQLException, ClassNotFoundException {				
 		dao.deleteAll();
 		assertEquals(dao.getCount(), 0);
@@ -83,6 +81,7 @@ public class UserDaoTest {
 	}
 	
 	@Test
+	@Order(2)
 	public void count() throws SQLException, ClassNotFoundException {		
 		dao.deleteAll();
 		assertEquals(dao.getCount(), 0);
@@ -98,6 +97,7 @@ public class UserDaoTest {
 	}
 	
 	@Test
+	@Order(3)
 	public void getUserFailure() throws SQLException, ClassNotFoundException {		
 		dao.deleteAll();
 		assertEquals(dao.getCount(), 0);		
@@ -107,6 +107,7 @@ public class UserDaoTest {
 	}	
 	
 	@Test
+	@Order(4)
 	public void getAll() throws SQLException  {
 		dao.deleteAll();
 		List<User> users0 = dao.getAll();
@@ -145,6 +146,7 @@ public class UserDaoTest {
 	}
 	
 	@Test
+	@Order(5)
 	public void duplciateKey() throws SQLException {
 		dao.deleteAll();
 		
@@ -154,6 +156,7 @@ public class UserDaoTest {
 	}
 	
 	@Test
+	@Order(6)
 	public void sqlExceptionTranslate() {
 		dao.deleteAll();
 		
@@ -176,30 +179,16 @@ public class UserDaoTest {
 	}
 	
 	@Test
+	@Order(7)
 	public void sqlExceptionTranslate2() throws ClassNotFoundException {
 		dao.deleteAll();
 		
 		try {
-//			dao.add(user1);
-//			dao.add(user1);
-			userDaoSql.add(user1);
-			userDaoSql.add(user1);
+			dao.add(user1);
+			dao.add(user2);
+//			userDaoSql.add(user1);
+//			userDaoSql.add(user1);
 		} //org.springframework.dao.DuplicateKeyException
-		catch(SQLException ex) {
-			System.out.println(ex);
-			System.out.println(ex.getErrorCode());
-			assertEquals(ex.getErrorCode(), MysqlErrorNumbers.ER_DUP_ENTRY);
-			// MysqlErrorNumbers.ER_DUP_ENTRY) 이경로는 가상디렉터리이다
-			
-			
-			
-			
-//			if (ex.getErrorCode() == MysqlErrorNumbers.ER_DUP_ENTRY) {
-//				throw new DuplicateKeyException(ex.getMessage());				
-//			}
-//			else
-//				throw new RuntimeException(ex);
-		}
 		finally {
 			
 		}

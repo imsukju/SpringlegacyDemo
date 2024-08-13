@@ -4,10 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.sql.DataSource;
 
-
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -45,8 +46,15 @@ public abstract class UserDaoJdbc implements UserDao{
 	}
 
 	public 	Optional<User> get(String id) {
-		return this.jdbcTemplate.queryForObject("select * from users where id = ?",
-				new Object[] {id}, this.userMapper);
+		String sql = "select * from users where id = ?";
+		try(Stream<User> stream =
+				jdbcTemplate.queryForStream(sql, userMapper,id)){
+			return stream.findFirst();
+		}
+		catch (DataAccessException e)
+		{
+			return Optional.empty();
+		} 
 	} 
 
 	public void deleteAll() {
@@ -54,7 +62,7 @@ public abstract class UserDaoJdbc implements UserDao{
 	}
 
 	public int getCount() {
-		return this.jdbcTemplate.queryForInt("select count(*) from users");
+		return this.jdbcTemplate.queryForStream("select count(*) from users");
 	}
 
 	public List<User> getAll() {
