@@ -32,10 +32,10 @@ public class UserServiceTest {
 	@BeforeEach
 	public void setUp() {
 		users = Arrays.asList(
+				new User("madnite1", "이상호", "p4", Level.SILVER, 60, UserService.MIN_RECCOMEND_FOR_GOLD),
 				new User("bumjin", "박범진", "p1", Level.BASIC, UserService.MIN_LOGCOUNT_FOR_SILVER-1, 0),
 				new User("joytouch", "강명성", "p2", Level.BASIC, UserService.MIN_LOGCOUNT_FOR_SILVER, 0),
 				new User("erwins", "신승한", "p3", Level.SILVER, 60, UserService.MIN_RECCOMEND_FOR_GOLD-1),
-				new User("madnite1", "이상호", "p4", Level.SILVER, 60, UserService.MIN_RECCOMEND_FOR_GOLD),
 				new User("green", "오민규", "p5", Level.GOLD, 100, Integer.MAX_VALUE)
 				);
 		
@@ -49,10 +49,10 @@ public class UserServiceTest {
 		
 		userService.upgradeLevels();
 		
-		checkLevelUpgraded(users.get(0), false);
-		checkLevelUpgraded(users.get(1), true);
-		checkLevelUpgraded(users.get(2), false);
-		checkLevelUpgraded(users.get(3), true);
+		checkLevelUpgraded(users.get(0), true);
+		checkLevelUpgraded(users.get(1), false);
+		checkLevelUpgraded(users.get(2), true);
+		checkLevelUpgraded(users.get(3), false);
 		checkLevelUpgraded(users.get(4), false);
 	}
 
@@ -112,13 +112,16 @@ public class UserServiceTest {
 		}
 
 		protected void upgradeLevel(User user) {
-			if (user.getId().equals(this.id)) throw new TestUserServiceException();  
+			if (user.getId().equals(this.id)) 
+				throw new TestUserServiceException();  
 			super.upgradeLevel(user);  
 		}
 	}
 	
 	static class TestUserServiceException extends RuntimeException {
 	}
+	
+
 
 
 
