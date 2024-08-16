@@ -29,6 +29,7 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSource() {
+		return null;
         // 데이터베이스 연결을 위한 DataSource 설정
         // 예를 들어, HikariDataSource 또는 다른 구현체를 반환
     }
