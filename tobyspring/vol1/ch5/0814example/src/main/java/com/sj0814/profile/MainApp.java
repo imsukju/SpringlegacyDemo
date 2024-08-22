@@ -7,7 +7,7 @@ import javax.sql.DataSource;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 public class MainApp {
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
         // 프로파일 설정: "dev" 또는 "prod"
         System.setProperty("spring.profiles.active", "dev");
