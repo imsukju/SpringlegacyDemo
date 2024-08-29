@@ -11,12 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class TransferService {
 	public void transfer(String account, double amount) {
-		System.out.println("Transfering" + amount + "to account" + account);
+		System.out.println("***************************************************************");
+		System.out.println("Transfering :" + amount + "to account :" + account);
+		System.out.println("***************************************************************");
 		
 	}
 	
 	public void checkBalance()
 	{
+		System.out.println("***************************************************************");
 		System.out.println("check balance");
+		System.out.println("***************************************************************");
 	}
 }
