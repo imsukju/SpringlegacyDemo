@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.AspectjDemo.One.declareingpointcut.aspect.LoggingAspect;
 import com.AspectjDemo.One.declareingpointcut.config.AppConfigOne;
+import com.AspectjDemo.One.declareingpointcut.service.SpecialService;
 import com.AspectjDemo.One.declareingpointcut.service.TransferService;
 
 public class Main {
@@ -17,10 +18,14 @@ public class Main {
 		
 		LoggingAspect logAspect = (LoggingAspect) context.getBean("loggingAspect");
 		
-		TransferService trnasferService = (TransferService) context.getBean("transferService");
+//		TransferService trnasferService = (TransferService) context.getBean("transferService");
+//		trnasferService.transfer("1515", 1515);
+//		trnasferService.checkBalance();
 		
-		trnasferService.transfer("1515", 1515);
-		trnasferService.checkBalance();
+		
+		SpecialService specialservice = (SpecialService) context.getBean("specialService");
+		specialservice.specialOperation("Hi");
+
 	}
 
 }

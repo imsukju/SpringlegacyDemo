@@ -9,11 +9,15 @@ public class SpecialService {
 
 	@Loggable
 	public void specialOperation(String operation) {
+		System.out.println("***************************************************************");
 		System.out.println("specail operation" + operation);
+		System.out.println("***************************************************************");
 		
 	}
 	
 	public void another(@Validated String param) {
+		System.out.println("***************************************************************");
 		System.out.println("another special operation" + param);
+		System.out.println("***************************************************************");
 	}
 }
