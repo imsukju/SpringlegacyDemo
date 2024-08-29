@@ -16,16 +16,16 @@ public class AppConfigOne {
 	
 	
 	
-	@Bean
-	public SpecialService specialService()
-	{
-		return new SpecialService();
-	}
-	
-	@Bean
-	public TransferService transferService()
-	{
-		return new TransferService();
-	}
+//	@Bean
+//	public SpecialService specialService()
+//	{
+//		return new SpecialService();
+//	}
+//	
+//	@Bean
+//	public TransferService transferService()
+//	{
+//		return new TransferService();
+//	}
 	
 }

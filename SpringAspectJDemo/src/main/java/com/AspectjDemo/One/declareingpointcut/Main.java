@@ -18,13 +18,14 @@ public class Main {
 		
 		LoggingAspect logAspect = (LoggingAspect) context.getBean("loggingAspect");
 		
-//		TransferService trnasferService = (TransferService) context.getBean("transferService");
-//		trnasferService.transfer("1515", 1515);
-//		trnasferService.checkBalance();
+		TransferService trnasferService = (TransferService) context.getBean("transferService");
+		trnasferService.transfer("1515", 1515);
+		trnasferService.checkBalance();
 		
 		
-		SpecialService specialservice = (SpecialService) context.getBean("specialService");
-		specialservice.specialOperation("Hi");
+//		SpecialService specialservice = (SpecialService) context.getBean("specialService");
+//		specialservice.specialOperation("Hi");
+//		specialservice.another("bye");
 
 	}
 
