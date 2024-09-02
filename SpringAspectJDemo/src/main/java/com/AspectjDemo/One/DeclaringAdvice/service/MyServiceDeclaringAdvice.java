@@ -13,7 +13,7 @@ public class MyServiceDeclaringAdvice {
 		System.out.println("MyServiceDeclaringAdvice:: performTask");
 		try
 		{
-			Thread.sleep(1000); // performTask() 호출하게한 콜스택의 주인이 스레드가 지금부터 1초동안 사용하지 않겠다
+			Thread.sleep(2000); // performTask() 호출하게한 콜스택의 주인이 스레드가 지금부터 1초동안 사용하지 않겠다
 		}
 		catch(InterruptedException e)
 		{

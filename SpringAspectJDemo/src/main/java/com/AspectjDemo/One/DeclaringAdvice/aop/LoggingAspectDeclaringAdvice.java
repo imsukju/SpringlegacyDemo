@@ -1,6 +1,7 @@
 package com.AspectjDemo.One.DeclaringAdvice.aop;
 
-import org.aopalliance.intercept.Joinpoint;
+
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspectDeclaringAdvice {
 	@Before("execution(* com.AspectjDemo.One.DeclaringAdvice.service.*.*(..))")
-	public void logBeforeMethod(Joinpoint jp)
+	public void logBeforeMethod(JoinPoint jp)
 	{
 		System.out.println("logBforeMethod");
 		System.out.println("Class" + jp.getClass());
@@ -22,7 +23,7 @@ public class LoggingAspectDeclaringAdvice {
 			pointcut = "execution(* com.AspectjDemo.One.DeclaringAdvice.service.*.*(..))",
 			returning = "result"
 			)
-	public void logAfterReturnig(Joinpoint jp, Object result)
+	public void logAfterReturnig(JoinPoint jp, Object result)
 	{
 		System.out.println("logAfterMethod");
 		System.out.println("Class" + jp.getClass());
@@ -33,7 +34,7 @@ public class LoggingAspectDeclaringAdvice {
 			pointcut = ""
 			,throwing = "error"
 			)
-	public void logAfterTrowing(Joinpoint jp, Object result)
+	public void logAfterTrowing(JoinPoint jp, Object result)
 	{
 		System.out.println("logAfterMethod");
 		System.out.println("Class" + jp.getClass());

@@ -10,8 +10,8 @@ import com.AspectjDemo.One.DeclaringAdvice.service.model.Account;
 @Aspect
 @Component
 public class AccountValidationAspect {
-	@Pointcut("execution (* com.AspectjDemo.One.DeclaringAdvice.dao.*.(..) && " 
-			+ "args(account,..)")
+	@Pointcut("execution (* com.AspectjDemo.One.DeclaringAdvice.dao.*.*(..) && " 
+			+ " args(account,..)")
 	public void accountDataAccessOperation(Account account)
 	{
 	}

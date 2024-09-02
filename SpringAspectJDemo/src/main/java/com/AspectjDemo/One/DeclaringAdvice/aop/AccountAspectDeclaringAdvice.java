@@ -21,7 +21,7 @@ public class AccountAspectDeclaringAdvice
 		out.println("Class : " + pj.getTarget().getClass().getName());
 		out.println("Method : " + pj.getSignature().getName());
 		
-//		Object ret = pj.proceed();
+		Object ret = pj.proceed();
 		String newPaatern = this.perProcess(accountholder);
 		
 		return pj.proceed(new Object[] {newPaatern});

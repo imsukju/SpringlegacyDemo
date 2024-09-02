@@ -30,6 +30,12 @@ public class AuuditAspect {
 		
 	}
 	
+	@Pointcut("execution(* com.AspectjDemo.One.DeclaringAdvice.service.*.*(..)) &&"
+			+ " @arg(com.AspectjDemo.One.DeclaringAdvice.annotation.Auditable)")
+	public void methodWithAuditableArgs() {};
+	
+	
+	
 	@Before("AuditablePoin()")
 	public void withinAiditable(JoinPoint jp)
 	{
@@ -47,6 +53,12 @@ public class AuuditAspect {
 	{
 		out.println("Target Annotation Class : " + jp.getClass());
 
+	}
+	
+	@Before("methodWithAuditableArgs()")
+	public void annotationarg()
+	{
+		out.println("annotation args");
 	}
 	
 }

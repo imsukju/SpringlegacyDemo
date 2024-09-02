@@ -133,6 +133,11 @@
                     <source>${maven.compiler.source}</source> 
                     <target>${maven.compiler.target}</target>
                     <release>17</release>
+                    <!-- 테스트때만 사용 메모리를 많이먹음>
+                    <compilerArgs>
+                    	<arg>-parameters</arg>
+                    </compilerArgs>
+                    <-->
                 </configuration>
              </plugin>
 		</plugins>
