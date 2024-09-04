@@ -2,6 +2,7 @@ package com.AspectjDemo.One.DeclaringAdvice.service;
 
 import java.util.Collection;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.AspectjDemo.One.DeclaringAdvice.annotation.AuditCode;
@@ -9,6 +10,7 @@ import com.AspectjDemo.One.DeclaringAdvice.annotation.AuditableCode;
 import com.AspectjDemo.One.DeclaringAdvice.service.model.MyType;
 
 @Service
+@Scope("prototype")
 public class SampleserviceDeclaringAdvice implements Sample<MyType>{
 	
 	@AuditableCode(AuditCode.USER_ACTION)

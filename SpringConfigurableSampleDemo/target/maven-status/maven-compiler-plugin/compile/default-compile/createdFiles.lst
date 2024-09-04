@@ -1,0 +1,7 @@
+com\configurableOne\service\MyServiceSpringConfigurable.class
+com\configurableOne\dao\AccountSpringConfigurable.class
+com\configurableOne\config\Appconfigrable.class
+com\configurableOne\service\StubEntilementCallculationService.class
+com\configurableOne\Main.class
+com\configurableOne\aspect\ProfilingAspect.class
+com\configurableOne\service\EntitlementCalculationService.class

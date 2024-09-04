@@ -109,6 +109,23 @@ public class Main {
 	        accountservice.updateAccount(validAccount);
 
 	 }
+	 
+	 
+	 public static void checkperthisAspect(ApplicationContext context)
+	 {
+		 SampleserviceDeclaringAdvice sampleservice1 =(SampleserviceDeclaringAdvice)context.getBean("sampleserviceDeclaringAdvice");
+		 MyType myTypeInstance = new MyType("example");
+		 sampleservice1.sampleMethod("hello");
+		 sampleservice1.sampleGenericMethod(myTypeInstance);
+		 sampleservice1.sampleGenericCollectionMethod(Arrays.asList(myTypeInstance));
+		 
+		 SampleserviceDeclaringAdvice sampleservice2 =(SampleserviceDeclaringAdvice)context.getBean("sampleserviceDeclaringAdvice");
+		 MyType myTypeInstance2 = new MyType("example");
+		 sampleservice2.sampleMethod("hello");
+		 sampleservice2.sampleGenericMethod(myTypeInstance2);
+		 sampleservice2.sampleGenericCollectionMethod(Arrays.asList(myTypeInstance2));
+		 
+	 }
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfigDeclaringAdvice.class);
@@ -117,7 +134,9 @@ public class Main {
 //	      checkAroundADviceTroughAccountService(context);
 //	      checkAroundADviceTroughAccountService2(context);
 //        checkAutomicThreadSafe(context);
-        checkIntrod(context);
+//        checkIntrod(context);
+        
+        checkperthisAspect(context);
 
     }
-	}
+}

@@ -16,6 +16,9 @@ public class ExecutionCountingAspectdeclaring {
 	// a = 10; a에 10이라는 값을 할려할려고 하는순간에, OS가 Thread에게 할당한 time slice(cpu 사용시간)가 경과하면,,,
 	//sleep(0)
 	// 사용시간을 뺏긴다면?
+	
+	//Bad code ExecutionCountingAspectdeclaring is Singleton bean -> 싱글턴은 state를 가지면 안된다
+	// 싱글턴은 속성이 있으면 좋지않다?
 	private AtomicInteger executionCount = new AtomicInteger(0);
 	
 	@Around("execution(* com.AspectjDemo.One.DeclaringAdvice.service.MyServiceDeclaringAdvice.*(..))")

@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.configurableOne</groupId>
+  <artifactId>SpringConfigurableOne</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+   <properties>
+	  <maven.compiler.source>17</maven.compiler.source>
+      <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+  
+  <dependencies>
+	  
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-context</artifactId>
+	      <version>6.1.6</version>
+	  </dependency>
+	  
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+	 <dependency>
+	     <groupId>org.springframework</groupId>
+	     <artifactId>spring-aop</artifactId>
+	     <version>6.1.6</version>
+	 </dependency>
+
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.9.22.1</version>
+        <scope>compile</scope> <!-- 수정: runtime -> compile -->
+    </dependency>
+
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.9.22.1</version>
+        <scope>compile</scope> <!-- 수정: runtime -> compile -->
+    </dependency>
+
+    <!-- Spring AOP aspects support -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>6.1.6</version> <!-- Spring 버전에 맞게 수정 -->
+    </dependency>
+
+	  <!-- For springframe.mail -->
+	  <dependency>
+	 	<groupId>org.springframework</groupId>
+	 	<artifactId>spring-context-support</artifactId>
+	 	<version>6.1.6</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-dao -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-dao</artifactId>
+	      <version>2.0.8</version>
+	  </dependency>
+	  <dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-core</artifactId>
+	    <version>5.2.0</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-instrument -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-instrument</artifactId>
+	    <version>6.1.6</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	    <version>6.1.6</version>
+	</dependency>
+
+  </dependencies>
+  
+  <build>
+	 
+	  <plugins>
+		  <plugin>
+    		  <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.8.1</version>
+              
+              <configuration>				  
+				  <source>${maven.compiler.source}</source>
+                  <target>${maven.compiler.target}</target>
+                  <release>17</release>
+			  </configuration>
+		  </plugin>
+	  </plugins>
+  </build>
+ 
+</project>
