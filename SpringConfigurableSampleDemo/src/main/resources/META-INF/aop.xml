@@ -3,10 +3,12 @@
     <weaver>
         <!-- 로드 타임 위빙을 적용할 패키지 정의 -->
         <include within="com.configurableOne..*"/>
+        <include within="com.mypractice.one..*"/>
     </weaver>
 
     <aspects>
         <aspect name="com.configurableOne.aspect.ProfilingAspect"/>
-
+        <aspect name="com.mypractice.one.aop.ExecutionAtomicThreadPractice"/>
+        <aspect name="com.mypractice.one.aspect.MypracticeAspect"/>
     </aspects>
 </aspectj>
