@@ -11,11 +11,8 @@ import com.sj664.domain.User;
 @Service
 @Transactional
 public interface UserService {
-	@Transactional
 	void add(User user);
-	@Transactional
 	void deleteAll();
-	@Transactional
 	void update(User user);		
 	Optional<User> get(String id);	
 	List<User> getAll();

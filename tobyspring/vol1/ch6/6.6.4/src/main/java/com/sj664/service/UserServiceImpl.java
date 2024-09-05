@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
 	public void setMailSender(MailSender mailSender) {
 		this.mailSender = mailSender;
 	}
-	@Transactional
 	public void upgradeLevels() {
 		List<User> users = userDao.getAll();
 		for (User user : users) {
@@ -35,7 +34,6 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 	}
-	@Transactional
 	private boolean canUpgradeLevel(User user) {
 		Level currentLevel = user.getLevel(); 
 		switch(currentLevel) {                                   
@@ -45,7 +43,6 @@ public class UserServiceImpl implements UserService {
 		default: throw new IllegalArgumentException("Unknown Level: " + currentLevel); 
 		}
 	}
-	@Transactional
 	protected void upgradeLevel(User user) {
 		user.upgradeLevel();
 		userDao.update(user);
@@ -66,11 +63,12 @@ public class UserServiceImpl implements UserService {
 		if (user.getLevel() == null) user.setLevel(Level.BASIC);
 		userDao.add(user);
 	}
-	
 	public void deleteAll() { 	userDao.deleteAll(); }
 	public Optional<User> get(String id) { 
 		return userDao.get(id); 
 	}
 	public List<User> getAll() { return userDao.getAll(); }
 	public void update(User user) { userDao.update(user); }
+	
+
 }
