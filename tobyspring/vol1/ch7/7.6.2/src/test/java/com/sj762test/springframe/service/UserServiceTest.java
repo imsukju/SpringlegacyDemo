@@ -52,10 +52,14 @@ import static com.sj762.springframe.service.UserServiceImpl.* ;
 @ContextConfiguration(classes = {TestApplicationContext.class})
 public class UserServiceTest {
 	@Autowired 
+	@Qualifier("userService")
 	UserService userService;	
+	
 	@Autowired 
-	@Qualifier("testUserService")
+	@Qualifier
+	("testUserService")
 	UserService testUserService;
+	
 	@Autowired UserDao userDao;
 	@Autowired MailSender mailSender;
 	@Autowired PlatformTransactionManager transactionManager;
@@ -107,7 +111,6 @@ public class UserServiceTest {
 			userService.add(user);
 		}
 		
-		users.add(new User("Test", "롤백테스트", "롤백p1", "user1@ksug.org", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER-1, 0));
 		List<User> users = userService.getAll();// 읽기전용
 		
 		Optional<User> getUser = userService.get("bumjin");
@@ -266,6 +269,12 @@ public class UserServiceTest {
 		userService.add(users.get(1));
 	}
 	
+//	@Test
+//	public void myTest()
+//	{
+//		List<User> test =testUserService.getAll();
+//
+//	}
 	
 	
 	static class TestUserServiceImpl extends UserServiceImpl {

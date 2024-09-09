@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sj762.springframe.domain.User;
 
 
-@Service("userService")
+//@Service
 @Transactional
 public interface UserService {
 	void add(User user);

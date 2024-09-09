@@ -27,7 +27,7 @@ import com.sj762.springframe.sqlservice.SqlService;
 import com.sj762.springframe.sqlservice.updatable.EmbeddedDbSqlRegistry;
 import com.sj762test.springframe.service.UserServiceTest.TestUserServiceException;
 
-@Configuration
+//@Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.sj762.springframe")
 public class TestApplicationContext {
