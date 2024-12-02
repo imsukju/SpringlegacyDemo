@@ -36,7 +36,7 @@
 
 ### 5. tobyspring
 - **설명**:  
-  "토비의 스프링" 예제를 참고하여 Spring의 IoC, DI, AOP 등 주요 개념을 실습한 프로젝트입니다.
+  ‘토비의 스프링’ 예제를 Spring Framework 6에 맞게 구현하며 IoC, DI, AOP 등 Spring의 주요 개념을 실습했습니다
 - **자세한 내용**: [README.md](./tobyspring/README.md)
 
 ---
